@@ -20,14 +20,13 @@ const Service_01 = () => {
       <SectionContent>
         <section className="md:max-w-[1200px] mx-auto space-y-10">
           <ContentHeadline
-            subTitle="Service"
-            mainTitle="事業内容"
-            subTitleClassName="text-center"
-            titleClassName="text-center"
+            subTitle="Our Service"
+            mainTitle={`暮らしとビジネスを支える
+              「確実」と「迅速」軽貨物配送サービス`}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {servicesToDisplay.map((service) => (
+          <div className="space-y-8 md:space-y-20">
+            {servicesToDisplay.map((service, index) => (
               <ServiceCard
                 key={service.id}
                 id={service.id}
@@ -36,7 +35,7 @@ const Service_01 = () => {
                 description={service.description}
                 image={service.image} // 画像パスを渡す
                 href={service.href} // リンク先を渡す
-                className=" space-y-4"
+                reverse={index % 2 === 1} // 偶数個目（インデックスが1, 3, 5...）で反転
               />
             ))}
           </div>
