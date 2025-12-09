@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import Menu from "@/components/ui/navigation/Menu"
-import Sns from "@/components/ui/button/SnsButton"
-import FooterLinks from "@/components/ui/navigation/FooterLinks"
-import CompanyInfo from "@/components/ui/navigation/CompanyInfo"
-import ContactButton from "@/components/ui/button/ContactButton"
+import Link from "next/link";
+import Image from "next/image";
+import Menu from "@/components/ui/navigation/Menu";
+import Sns from "@/components/ui/button/SnsButton";
+import FooterLinks from "@/components/ui/navigation/FooterLinks";
+import CompanyInfo from "@/components/ui/navigation/CompanyInfo";
+import ContactButton from "@/components/ui/button/ContactButton";
 
 // フッター
 const Footer_01 = () => {
   const { companyName, companyNameText, companyPostalCode, companyAddress } =
-    CompanyInfo[0]
+    CompanyInfo[0];
   return (
     <footer className="bg-white border-t py-10 md:py-24 px-4 md:px-0">
       <div className="md:max-w-[1240px] mx-auto md:px-5">
@@ -21,7 +21,10 @@ const Footer_01 = () => {
               {CompanyInfo[0].companyName("secondary")}
             </h4>
             <p>{companyNameText}</p>
-            <p>{companyPostalCode}{companyAddress}</p>
+            <p>
+              {companyPostalCode}
+              {companyAddress}
+            </p>
           </div>
           <div className="flex flex-col md:items-end mt-5 md:mt-0">
             <ul className="md:flex items-center md:space-x-10 font-light space-y-5 md:space-y-0">
@@ -72,11 +75,12 @@ const Footer_01 = () => {
           </ul>
         </div>
         <small className="mt-4 flex justify-end items-center md:text-base">
-        &copy;rb. ALL Rights Reserved.
+          &copy; {new Date().getFullYear()} 株式会社アールビー. All Rights
+          Reserved.
         </small>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer_01
+export default Footer_01;
