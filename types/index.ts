@@ -64,6 +64,7 @@ export interface ContentHeadlineProps extends FrameProps {
   parentDirectoryLink?: string
   titleClassName?: string // h1用のclassName
   subTitleClassName?: string // h2用のclassName
+  variant?: "default" | "light" // バリアント
 }
 
 export interface ButtonProps {

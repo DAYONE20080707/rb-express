@@ -15,6 +15,7 @@ const ContentHeadline: React.FC<ContentHeadlineProps> = ({
   ImageWidth,
   ImageHeight,
   id,
+  variant = "default",
 }) => {
   return (
     <section
@@ -35,7 +36,7 @@ const ContentHeadline: React.FC<ContentHeadlineProps> = ({
       )}
       <p
         className={classNames(
-          "text-sm md:text-lg font-extrabold tracking-[0.03em] font-en text-accentLight",
+          "text-sm md:text-xl font-extrabold tracking-[0.03em] font-en text-accentLight",
           subTitleClassName
         )}
       >
@@ -43,7 +44,8 @@ const ContentHeadline: React.FC<ContentHeadlineProps> = ({
       </p>
       <h1
         className={classNames(
-          "text-4xl md:text-[40px] leading-[150%] mt-2 md:mt-5 tracking-[0.05em] font-semibold text-accentColor whitespace-pre-line",
+          "text-4xl md:text-[40px] leading-[150%] mt-2 md:mt-5 tracking-[0.05em] font-semibold whitespace-pre-line",
+          variant === "light" ? "text-accentLight2" : "text-accentColor",
           titleClassName
         )}
       >

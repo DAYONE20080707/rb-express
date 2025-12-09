@@ -54,7 +54,7 @@ const AboutSection_02 = ({
           </p>
         )}
         {buttonHref && (
-          <MoreButton href={buttonHref} className="mt-10" variant="accent" />
+          <MoreButton href={buttonHref} className="mt-10" variant="blue" />
         )}
       </div>
     </div>

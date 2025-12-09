@@ -46,7 +46,7 @@ const AboutSection_04 = ({
           </p>
         )}
         {buttonHref && (
-          <MoreButton href={buttonHref} className="mt-10" variant="accent" />
+          <MoreButton href={buttonHref} className="mt-10" variant="blue" />
         )}
       </div>
       <div className="md:w-[36vw] md:max-w-[520px] h-[300px] md:h-auto relative">
