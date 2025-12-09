@@ -21,7 +21,7 @@ import Profile_04 from "@/components/top/profile/Profile_04"
 const AboutPage = () => {
   return (
     <div>
-      <Lowerkv_01 />
+      <Lowerkv_02 />
       <About_01 />
       <Purpose_01 />
       <History_01 />

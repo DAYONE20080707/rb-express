@@ -64,11 +64,11 @@ const Header_05 = () => {
             {filteredMenu.map((item, index) => (
               <li key={index}>
                 <Link href={item.href}>
-                  <div>{item.name}</div>
+                  <div>{item.nameJa}</div>
                 </Link>
               </li>
             ))}
-            <div className="flex items-center ">
+            {/* <div className="flex items-center ">
               {SnsButton.slice(0, 3).map((sns, index) => (
                 <SnsIconButton
                   key={index}
@@ -78,7 +78,7 @@ const Header_05 = () => {
                   className="text-white hover:text-accentColor transition-colors duration-200"
                 />
               ))}
-            </div>
+            </div> */}
             <li className="">
               <ContactButton className="" />
             </li>
@@ -136,11 +136,11 @@ const Header_05 = () => {
             {filteredMenu.map((item, index) => (
               <li key={index}>
                 <Link href={item.href}>
-                  <div onClick={handleMenuToggle}>{item.name}</div>
+                  <div onClick={handleMenuToggle}>{item.nameJa}</div>
                 </Link>
               </li>
             ))}
-            <div className="flex items-center ">
+            {/* <div className="flex items-center ">
               {SnsButton.slice(0, 3).map((sns, index) => (
                 <SnsIconButton
                   key={index}
@@ -150,7 +150,7 @@ const Header_05 = () => {
                   className="text-white hover:text-accentColor transition-colors duration-200"
                 />
               ))}
-            </div>
+            </div> */}
             {/* ContactButton */}
             <li>
               <ContactButton className="w-full py-4 font-normal" />

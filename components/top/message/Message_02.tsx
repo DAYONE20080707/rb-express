@@ -23,7 +23,7 @@ const Message_02 = () => {
           <div className=" mt-16 flex justify-start space-x-20">
             <div className=" w-[520px] h-[767px] relative">
               <Image
-                src="/top/message/message_img.png"
+                src="/top/message/message_img.jpg"
                 alt="message"
                 fill
                 className="object-cover"

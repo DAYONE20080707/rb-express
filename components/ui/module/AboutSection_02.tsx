@@ -26,14 +26,14 @@ const AboutSection_02 = ({
         {line}
         {i !== text.split("\\n").length - 1 && <br />}
       </React.Fragment>
-    ))
-  }
+    ));
+  };
 
   return (
     <div className="flex flex-col-reverse md:flex-row justify-start md:space-x-20 pb-24">
       <div className="md:w-[36vw] md:max-w-[520px] h-[300px] md:h-auto relative mt-10 md:mt-0">
         <Image
-          src={imageUrl || "/top/message/message_img.png"}
+          src={imageUrl || "/top/message/message_img.jpg"}
           alt={name || "message"}
           fill
           className="object-cover w-full h-full"
@@ -47,18 +47,14 @@ const AboutSection_02 = ({
           {description}
         </p>
         {(position || name) && (
-            <p className="mt-10 text-lg !leading-[250%]">
-              {position}
-              <br />
-              {name}
-            </p>
-          )}
+          <p className="mt-10 text-lg !leading-[250%]">
+            {position}
+            <br />
+            {name}
+          </p>
+        )}
         {buttonHref && (
-          <MoreButton
-            href={buttonHref}
-            className="mt-10"
-            variant="accent"
-          />
+          <MoreButton href={buttonHref} className="mt-10" variant="accent" />
         )}
       </div>
     </div>

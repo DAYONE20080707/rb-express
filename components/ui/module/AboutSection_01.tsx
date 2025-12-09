@@ -1,14 +1,14 @@
 import React from "react";
-import MoreButton from "@/components/ui/button/MoreButton"
-import Image from "next/image"
+import MoreButton from "@/components/ui/button/MoreButton";
+import Image from "next/image";
 
 interface AboutSection_01Props {
-  title: string // 見出しテキスト
-  description: string // 本文
-  buttonHref?: string // ボタンリンク先（任意）
-  imageUrl?: string // 画像URL（任意）
-  position?: string // 役職（任意）
-  name?: string // 氏名（任意）
+  title: string; // 見出しテキスト
+  description: string; // 本文
+  buttonHref?: string; // ボタンリンク先（任意）
+  imageUrl?: string; // 画像URL（任意）
+  position?: string; // 役職（任意）
+  name?: string; // 氏名（任意）
 }
 
 const AboutSection_01 = ({
@@ -26,8 +26,8 @@ const AboutSection_01 = ({
         {line}
         {i !== text.split("\\n").length - 1 && <br />}
       </React.Fragment>
-    ))
-  }
+    ));
+  };
 
   return (
     <>
@@ -47,11 +47,7 @@ const AboutSection_01 = ({
             </p>
           )}
           {buttonHref && (
-            <MoreButton
-              href={buttonHref}
-              className="mt-10"
-              variant="accent"
-            >
+            <MoreButton href={buttonHref} className="mt-10" variant="accent">
               About us
             </MoreButton>
           )}
@@ -59,14 +55,14 @@ const AboutSection_01 = ({
       </div>
       <section className="md:w-full h-[250px] md:h-[480px] mx-auto mt-10 md:mt-[120px]  flex justify-center relative ">
         <Image
-          src="/top/message/message_img.png"
+          src="/top/message/message_img.jpg"
           alt="message"
           fill
           className="object-cover rounded-t-[40px]"
         />
       </section>
     </>
-  )
-}
+  );
+};
 
-export default AboutSection_01
+export default AboutSection_01;

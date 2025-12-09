@@ -1,11 +1,11 @@
 // components/message/Message_03.tsx
 
-"use client"
+"use client";
 
-import MoreLinkButton from "@/components/ui/button/MoreButton"
-import ContentHeadline from "@/components/ui/frame/ContentHeadline"
-import SectionContent from "@/components/ui/frame/SectionContent"
-import Image from "next/image"
+import MoreLinkButton from "@/components/ui/button/MoreButton";
+import ContentHeadline from "@/components/ui/frame/ContentHeadline";
+import SectionContent from "@/components/ui/frame/SectionContent";
+import Image from "next/image";
 
 // メッセージ
 const Message_03 = () => {
@@ -29,7 +29,7 @@ const Message_03 = () => {
             </div>
             <div className=" w-[520px] h-[767px] relative">
               <Image
-                src="/top/message/message_img.png"
+                src="/top/message/message_img.jpg"
                 alt="message"
                 fill
                 className="object-cover"
@@ -39,7 +39,7 @@ const Message_03 = () => {
         </section>
       </SectionContent>
     </>
-  )
-}
+  );
+};
 
-export default Message_03
+export default Message_03;
