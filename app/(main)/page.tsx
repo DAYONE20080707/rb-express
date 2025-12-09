@@ -69,18 +69,9 @@ const HomePage = () => {
     <div>
       <KeyVisual_01 />
       <About_01 />
-      <Strength_01 />
-      <Message_01 />
       <Service_01 />
-      <News_01 />
-      <Case_01 />
       <Blog_01 />
-      <Plan_01 />
-      <Faq_01 />
-      <Profile_01 />
-      <Flow_01 />
-      <Cta_01 />
-      <Aside_01 />
+      <Cta_03 />
     </div>
   )
 }
