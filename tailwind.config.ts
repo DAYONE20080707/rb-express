@@ -29,6 +29,7 @@ const config = {
       colors: {
         accentColor: "#265695",
         accentLight: "#60BBC7",
+        accentLight2: "#B0DFE0",
         baseColor: "#333333",
         borderGray: "#393939",
         borderLight: "#B0DFE0",
