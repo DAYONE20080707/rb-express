@@ -7,9 +7,9 @@ const ContactPage = () => {
   return (
     <div>
       <Lowerkv_02
-        subTitle="Company"
-        mainTitle="会社概要"
-        backgroundImage="./common/lowerkv_about.jpg"
+        subTitle="Contact"
+        mainTitle="お問い合わせ"
+        backgroundImage="./common/lowerkv_contact.jpg"
       />
       <Contact_01 />
       <Cta_03 />
