@@ -15,19 +15,19 @@ const Footer_01 = () => {
   return (
     <footer className="bg-white border-t py-10 md:py-24 px-4 md:px-0">
       <div className="md:max-w-[1240px] mx-auto md:px-5">
-        <div className="md:flex justify-between items-center">
-          <div className="space-y-3">
-            <h4 className="w-[100px]">
+        <div className="md:flex justify-between items-end">
+          <div className="">
+            <h4 className="w-[118px]">
               {CompanyInfo[0].companyName("secondary")}
             </h4>
-            <p>{companyNameText}</p>
-            <p>
+            <p className="mt-10">{companyNameText}</p>
+            <p className="mt-3">
               {companyPostalCode}
               {companyAddress}
             </p>
           </div>
           <div className="flex flex-col md:items-end mt-5 md:mt-0">
-            <ul className="md:flex items-center md:space-x-10 font-light space-y-5 md:space-y-0">
+            <ul className="md:flex items-center md:space-x-10 space-y-5 md:space-y-0 text-accentColor">
               {/* <li>
                 <Link href="/">
                   <div>トップページ</div>
@@ -64,7 +64,7 @@ const Footer_01 = () => {
               </li>
             ))}
           </ul> */}
-          <ul className="md:flex items-center md:space-x-10 font-light mt-5 md:mt-0 space-y-5 md:space-y-0">
+          <ul className="md:flex items-center md:space-x-10 mt-5 md:mt-0 space-y-5 md:space-y-0 text-accentColor">
             {FooterLinks.map((item, index) => (
               <li key={index}>
                 <Link href={item.href}>
@@ -74,9 +74,8 @@ const Footer_01 = () => {
             ))}
           </ul>
         </div>
-        <small className="mt-4 flex justify-end items-center md:text-base">
-          &copy; {new Date().getFullYear()} 株式会社アールビー. All Rights
-          Reserved.
+        <small className="mt-4 flex justify-end items-center md:text-base text-accentColor">
+          Copyright RB. All Rights Reserved. Reserved.
         </small>
       </div>
     </footer>
