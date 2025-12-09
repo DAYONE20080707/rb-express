@@ -10,12 +10,11 @@ export const Menu = [
     nameJa: "会社概要",
     href: "/about",
   },
-
-  {
-    name: 'News',
-    nameJa: "お知らせ",
-    href: '/news',
-  },
+  // {
+  //   name: 'News',
+  //   nameJa: "お知らせ",
+  //   href: '/news',
+  // },
   {
     name: 'Recruit',
     nameJa: "採用情報",

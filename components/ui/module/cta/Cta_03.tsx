@@ -22,7 +22,7 @@ const Cta_03 = () => {
               採用情報一覧はこちらから
             </p>
             <div className="flex justify-center mt-6">
-              <MoreLinkButton href="#service" className="md:!w-[350px]">
+              <MoreLinkButton href="/recruit" className="md:!w-[350px]">
                 view more
               </MoreLinkButton>
             </div>
