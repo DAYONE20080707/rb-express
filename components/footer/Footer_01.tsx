@@ -17,9 +17,11 @@ const Footer_01 = () => {
       <div className="md:max-w-[1240px] mx-auto md:px-5">
         <div className="md:flex justify-between items-end">
           <div className="">
-            <h4 className="w-[118px]">
-              {CompanyInfo[0].companyName("secondary")}
-            </h4>
+            <Link href="/">
+              <h4 className="w-[118px]">
+                {CompanyInfo[0].companyName("secondary")}
+              </h4>
+            </Link>
             <p className="mt-10">{companyNameText}</p>
             <p className="mt-3">
               〒{companyPostalCode} {companyAddress}
