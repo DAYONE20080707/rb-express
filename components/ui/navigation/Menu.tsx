@@ -2,7 +2,7 @@
 export const Menu = [
   {
     name: "Our Service",
-    nameJa: "事業内容",
+    nameJa: "サービス",
     href: "/#service",
   },
   {
@@ -11,14 +11,16 @@ export const Menu = [
     href: "/#about",
   },
 
-  // {
-  //   name: '料金プラン',
-  //   href: '/#plan',
-  // },
-  // {
-  //   name: 'お問い合わせ',
-  //   href: '/contact',
-  // },
+  {
+    name: 'News',
+    nameJa: "お知らせ",
+    href: '/news',
+  },
+  {
+    name: 'Recruit',
+    nameJa: "採用情報",
+    href: '/recruit',
+  },
   // {
   //   name: 'Case study',
   //   href: '/#casestudy',
