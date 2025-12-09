@@ -6,8 +6,8 @@ const PrivacyPage = () => {
   return (
     <div>
       <Lowerkv_02
-        subTitle="Company"
-        mainTitle="会社概要"
+        subTitle="Privacy Policy"
+        mainTitle="プライバシーポリシー"
         backgroundImage="./common/lowerkv_about.jpg"
       />
       <Privacy1 />

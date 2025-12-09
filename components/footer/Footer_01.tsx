@@ -22,8 +22,7 @@ const Footer_01 = () => {
             </h4>
             <p className="mt-10">{companyNameText}</p>
             <p className="mt-3">
-              {companyPostalCode}
-              {companyAddress}
+              〒{companyPostalCode} {companyAddress}
             </p>
           </div>
           <div className="flex flex-col md:items-end mt-5 md:mt-0">
