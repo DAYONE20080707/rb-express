@@ -8,16 +8,16 @@ import Link from "next/link";
 import { Cms } from "@/types";
 import PageContent from "@/components/ui/frame/PageContent";
 import MoreButton from "@/components/ui/button/MoreButton";
-import { newsFetch } from "@/lib/api/newsFetch";
+import { blogsFetch } from "@/lib/api/blogsFetch";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
 import SectionContent from "@/components/ui/frame/SectionContent";
 
-interface BlogProps {
+interface RecruitProps {
   limit?: number;
 }
 
-const Blog_01 = ({ limit = 3 }: BlogProps) => {
+const Recruit_01 = ({ limit = 3 }: RecruitProps) => {
   const [allContents, setAllContents] = useState<Cms[]>([]);
   const [displayContents, setDisplayContents] = useState<Cms[]>([]);
   const [categories, setCategories] = useState<{ id: string; name: string }[]>(
@@ -32,7 +32,7 @@ const Blog_01 = ({ limit = 3 }: BlogProps) => {
     (async () => {
       try {
         setLoading(true);
-        const data = await newsFetch.list(100); // 全件取得
+        const data = await blogsFetch.list(100); // 全件取得
         if (!mounted) return;
         setAllContents(data);
 
@@ -163,4 +163,4 @@ const Blog_01 = ({ limit = 3 }: BlogProps) => {
   );
 };
 
-export default Blog_01;
+export default Recruit_01;

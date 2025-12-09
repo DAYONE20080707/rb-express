@@ -9,6 +9,7 @@ interface Lowerkv_02Props {
   backgroundImage?: string;
   parentDirectoryName?: string;
   parentDirectoryLink?: string;
+  breadcrumbTitle?: string;
 }
 
 // 私たちについて
@@ -18,6 +19,7 @@ const Lowerkv_02 = ({
   backgroundImage = "/common/lowerkv.jpg",
   parentDirectoryName,
   parentDirectoryLink,
+  breadcrumbTitle,
 }: Lowerkv_02Props) => {
   return (
     <div
@@ -28,7 +30,7 @@ const Lowerkv_02 = ({
     >
       <div className="md:max-w-[1240px] mx-auto px-5 relative h-full flex flex-col pt-[50px] md:pt-[114px]">
         <Breadcrumb
-          mainTitle={mainTitle}
+          mainTitle={breadcrumbTitle || mainTitle}
           parentDirectoryName={parentDirectoryName}
           parentDirectoryLink={parentDirectoryLink}
         />

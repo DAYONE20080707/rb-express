@@ -76,16 +76,14 @@ const News_01 = ({ limit = 3 }: NewsProps) => {
                 key={post.id}
                 className="flex gap-4 md:gap-6 py-4 border-b border-borderLight"
               >
-                <div className="flex-shrink-0 overflow-hidden">
-                  {post.image && (
-                    <Image
-                      src={post.image.url}
-                      alt={post.title ?? "ブログサムネイル"}
-                      width={180}
-                      height={130}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
+                <div className="flex-shrink-0 overflow-hidden md:max-w-[180px]">
+                  <Image
+                    src={post.image?.url || "/common/noimage.jpg"}
+                    alt={post.title ?? "ブログサムネイル"}
+                    width={180}
+                    height={130}
+                    className="w-full h-full object-cover aspect-[180/130]"
+                  />
                 </div>
                 <div className="flex-1 flex flex-col justify-start">
                   <p className="text-accentLight text-sm md:text-sm mb-2 font-en">
