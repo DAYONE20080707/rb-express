@@ -18,7 +18,7 @@ const Cta_03 = () => {
               Recruit
             </p>
             <h4 className="text-3xl md:text-[40px] leading-[120%]">採用情報</h4>
-            <p className="md:text-lg md:mt-12 leading-[160%]">
+            <p className="md:text-lg mt-6 md:mt-12 leading-[160%]">
               採用情報一覧はこちらから
             </p>
             <div className="flex justify-center mt-6">
@@ -34,7 +34,7 @@ const Cta_03 = () => {
             <h4 className="text-3xl md:text-[40px] leading-[120%]">
               お問い合わせ
             </h4>
-            <p className="md:text-lg md:mt-12 leading-[160%]">
+            <p className="md:text-lg mt-6 md:mt-12 leading-[160%]">
               求人お問い合わせはこちらから
             </p>
             <div className="flex justify-center mt-6">

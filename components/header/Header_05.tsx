@@ -34,8 +34,8 @@ const Header_05 = () => {
 
   return (
     <div className="">
-      <HeaderContent className="max-w-[1200px] fixed top-5 left-1/2 transform -translate-x-1/2 z-10 w-full transition-all duration-300">
-        <div className="w-full h-11 md:h-20 flex items-center justify-between mx-auto pl-10  bg-white transition-all duration-300">
+      <HeaderContent className="max-w-[1200px] fixed top-0 md:top-5 left-1/2 transform -translate-x-1/2 z-10 w-full transition-all duration-300">
+        <div className="w-full h-11 md:h-20 flex items-center justify-between mx-auto px-6 md:pl-10 md:pr-0  bg-white transition-all duration-300">
           {/* ロゴ */}
           <Link href="/" className="w-[150px] md:w-[237px]">
             <div className="text-lg font-bold ">
@@ -64,13 +64,13 @@ const Header_05 = () => {
               ))}
             </div> */}
             <li className=" h-full">
-              <ContactButton className="" >お問い合わせ</ContactButton>
+              <ContactButton className="">お問い合わせ</ContactButton>
             </li>
           </ul>
 
           {/* ハンバーガーメニューボタン */}
           <button
-            className={`block md:hidden text-baseColor transition-transform duration-300 ${
+            className={`block md:hidden text-accentColor transition-transform duration-300 ${
               isMenuOpen ? "rotate-90" : "rotate-0"
             }`}
             onClick={handleMenuToggle}
@@ -94,17 +94,14 @@ const Header_05 = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="18"
+                viewBox="0 0 30 18"
                 fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1"
-                stroke="currentColor"
-                className="w-8 h-8"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
+                <rect width="30" height="2" fill="currentColor" />
+                <rect y="8" width="30" height="2" fill="currentColor" />
+                <rect y="16" width="30" height="2" fill="currentColor" />
               </svg>
             )}
           </button>
@@ -112,7 +109,7 @@ const Header_05 = () => {
 
         {/* スマホ用メニュー */}
         <div
-          className={`absolute top-20 left-0 w-full h-screen bg-gray-800 bg-opacity-70 text-white md:hidden transition-opacity duration-300 ${
+          className={`absolute top-[44px] left-0 w-full h-screen bg-gray-800 bg-opacity-70 text-white md:hidden transition-opacity duration-300 ${
             isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           } ${isAnimating ? "pointer-events-auto" : ""}`}
         >
@@ -137,7 +134,7 @@ const Header_05 = () => {
             </div> */}
             {/* ContactButton */}
             <li>
-              <ContactButton className="w-full py-4 font-normal" />
+              <ContactButton className="w-full py-4 font-normal" >お問い合わせ</ContactButton>
             </li>
           </ul>
         </div>

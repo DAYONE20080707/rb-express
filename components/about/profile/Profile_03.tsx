@@ -47,7 +47,7 @@ const Profile_03 = () => {
           style={{ border: "0" }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="w-full"
+          className="w-full h-[400px] md:h-[500px]"
         />
       </div>
     </>
