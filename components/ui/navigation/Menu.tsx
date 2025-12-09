@@ -8,7 +8,7 @@ export const Menu = [
   {
     name: "About  us",
     nameJa: "会社概要",
-    href: "/#about",
+    href: "/about",
   },
 
   {

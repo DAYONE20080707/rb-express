@@ -21,7 +21,10 @@ import Profile_04 from "@/components/top/profile/Profile_04"
 const AboutPage = () => {
   return (
     <div>
-      <Lowerkv_02 />
+      <Lowerkv_02 
+       subTitle="Company" 
+       mainTitle="会社概要" 
+       backgroundImage="./common/lowerkv_about.jpg"/>
       <About_01 />
       <Purpose_01 />
       <History_01 />
