@@ -73,14 +73,14 @@ const formFields: FormField[] = [
   },
   {
     label: "面談第二希望日時",
-    name: "date",
-    type: "datetime-local",
+    name: "secondInterviewDate",
+    type: "date",
     required: false,
   },
   {
     label: "面談第三希望日時",
-    name: "date",
-    type: "datetime-local",
+    name: "thirdInterviewDate",
+    type: "date",
     required: false,
   },
   {
