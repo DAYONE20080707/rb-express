@@ -96,6 +96,9 @@ const News_01 = ({ limit = 3 }: NewsProps) => {
                   <p className="text-baseColor font-normal text-sm md:text-base leading-[160%] line-clamp-2">
                     {post.title}
                   </p>
+                  <p className="text-baseColor font-normal text-sm md:text-base leading-[160%] line-clamp-2">
+                    {post.description}
+                  </p>
                 </div>
               </div>
             ))}

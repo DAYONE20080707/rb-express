@@ -7,7 +7,7 @@ import SubmitButton from "@/components/ui/button/SubmitButton";
 interface FormField {
   label: string;
   name: string;
-  type: "text" | "email" | "tel" | "textarea" | "select" | "date";
+ type: "text" | "email" | "tel" | "textarea" | "select" | "date" | "datetime-local";
   placeholder?: string;
   required: boolean;
   options?: { value: string; label: string }[];
@@ -68,19 +68,19 @@ const formFields: FormField[] = [
   {
     label: "面談第一希望日時",
     name: "firstInterviewDate",
-    type: "date",
+    type: "datetime-local",
     required: true,
   },
   {
     label: "面談第二希望日時",
-    name: "secondInterviewDate",
-    type: "date",
+    name: "date",
+    type: "datetime-local",
     required: false,
   },
   {
     label: "面談第三希望日時",
-    name: "thirdInterviewDate",
-    type: "date",
+    name: "date",
+    type: "datetime-local",
     required: false,
   },
   {
