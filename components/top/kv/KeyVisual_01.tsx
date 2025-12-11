@@ -14,7 +14,7 @@ const KeyVisual_01 = () => {
     <>
       <FirstViewContent className="relative">
         {/* widthがフルサイズでない場合は指定する */}
-        <section className="relative h-screen">
+        <section className="relative h-[980px]">
           {/* KeyVisualContentに高さを指定 */}
           <KeyVisualContent className="h-full" />
         </section>
