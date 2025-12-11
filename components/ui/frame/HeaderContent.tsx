@@ -16,7 +16,7 @@ const HeaderContent: React.FC<HeaderContentProps> = ({
     <>
       <header
         className={classNames(
-          "w-full fixed top-0 left-0 text-[#393939] tracking-wide px-4 md:px-0 z-10",
+          "w-full fixed top-0 left-0 text-[#393939] tracking-wide z-10",
           className
         )}
       >

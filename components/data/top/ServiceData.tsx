@@ -2,34 +2,19 @@ export const serviceData = [
     {
       id: 1,
       subTitle: "Service 01",
-      title: "コンサルティング事業",
-      description: "見出しテキストはいります。見出しテキストはいります。見出しテキストはいります。見出しテキストはいります。見出しテキストはいります。見出しテキストはいります。",
-      image: "/top/service/service_img_01.png",
+      title: "暮らしとビジネスを支える\n安定した配送ネットワーク",
+      description: "企業様向けのルート配送・企業配を中心に、日々の業務を支える確実な配送サービスを提供しています。丁寧な対応と安全な荷扱いを徹底し、継続して頼れる配送パートナーとしてサポートいたします。個人宅配送にも対応し、幅広い配送ニーズにお応えします。また、長距離配送にも柔軟に対応し、遠方へのお荷物もしっかりとお届けいたします。",
+      image: "/top/service/service_img01.jpg",
       href: "/service/1", // リンク先を追加
     },
     {
       id: 2,
       subTitle: "Service 02",
-      title: "就職支援事業",
-      description: "就職支援事業は、求職者（学生・既卒者・転職希望者・留学生等）の就労支援を通じて、キャリア形成・社会的自立・人材流動性の促進を目的としています。",
-      image: "/top/service/service_img_02.png",
+      title: "緊急時・多様なニーズに応える\n柔軟な配送ソリューション",
+      description: "急な部品の調達、期日厳守の重要書類、特定の時間指定が必要な配送など、突発的なニーズに即座に対応します。車両を専属で手配するチャーター便や、緊急のスポット便により、お客様の物流課題を解決。フットワークの軽さを最大限に活かし、柔軟で最適な配送計画をご提案します。",
+      image: "/top/service/service_img02.jpg",
       href: "/service/2",
     },
-    {
-      id: 3,
-      subTitle: "Service 03",
-      title: "貿易事業",
-      description: "日本国内外の商材・製品・サービスの流通をグローバルに展開し、企業の収益拡大と国際競争力の向上を図ります！",
-      image: "/top/service/service_img_03.png",
-      href: "/service/3",
-    },
-    // {
-    //   id: 4,
-    //   subTitle: "Service 04",
-    //   title: "Custom Plan",
-    //   description: "ニーズをヒアリングのうえ、御社だけのPlanをカスタマイズ",
-    //   image: "/top/service/service_img_04.png",
-    //   href: "/service/3",
-    // },
+
     
   ]

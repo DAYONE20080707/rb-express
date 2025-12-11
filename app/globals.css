@@ -72,6 +72,7 @@ body,
 
   body {
     @apply bg-background text-foreground;
+    font-weight: 500;
   }
 }
 
@@ -86,6 +87,126 @@ body,
 
 .font-en {
   font-family: var(--font-en), sans-serif;
+}
+
+/* News Detail Content Styles */
+@layer components {
+  .news-content,
+  .recruit-content {
+    max-width: none;
+  }
+
+  .news-content h2,
+  .recruit-content h2 {
+    font-size: 28px;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    color: #265695;
+  }
+
+  @media (max-width: 768px) {
+    .news-content h2,
+    .recruit-content h2 {
+      font-size: 20px;
+    }
+  }
+
+  .news-content h3,
+  .recruit-content h3 {
+    font-size: 22px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .news-content h3,
+    .recruit-content h3 {
+      font-size: 18px;
+    }
+  }
+
+  .news-content p,
+  .recruit-content p {
+    line-height: 2.5;
+    font-size: 1rem;
+  }
+
+  .news-content li,
+  .recruit-content li {
+    font-size: 1rem;
+    line-height: 2.5;
+  }
+
+  .news-content ul,
+  .recruit-content ul {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .news-content ul li::marker,
+  .recruit-content ul li::marker {
+    color: #265695;
+    font-size: 16px;
+  }
+
+  .news-content ol,
+  .recruit-content ol {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
+  }
+  .news-content img,
+  .recruit-content img {
+    margin-bottom: 1rem;
+  }
+
+  .news-content table,
+  .recruit-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .news-content th,
+  .recruit-content th {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+    vertical-align: top;
+    width: 30%;
+  }
+
+  .news-content td,
+  .recruit-content td {
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    vertical-align: top;
+  }
+
+  .news-content tbody td:first-child p,
+  .recruit-content tbody td:first-child p {
+    font-weight: 600;
+  }
+  .news-content td p,
+  .recruit-content td p {
+    text-align: left !important;
+    margin: 0;
+  }
+
+  .news-content tbody tr:last-child th,
+  .news-content tbody tr:last-child td,
+  .recruit-content tbody tr:last-child th,
+  .recruit-content tbody tr:last-child td {
+    border-bottom: 1px solid #e0e0e0;
+  }
 }
 
 /* swiper */

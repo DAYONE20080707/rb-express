@@ -49,7 +49,7 @@ const AboutSection_03 = ({
           <MoreButton
             href={buttonHref}
             className="mt-10"
-            variant="accent"
+            variant="blue"
           />
         )}
       </div>

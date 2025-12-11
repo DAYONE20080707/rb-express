@@ -1,243 +1,372 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import SubmitButton from "@/components/ui/button/SubmitButton"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import SubmitButton from "@/components/ui/button/SubmitButton";
 
 interface FormField {
-  label: string
-  name: string
-  type: "text" | "email" | "tel" | "textarea" | "select"
-  placeholder?: string
-  required: boolean
-  options?: { value: string; label: string }[]
+  label: string;
+  name: string;
+  type: "text" | "email" | "tel" | "textarea" | "select" | "date";
+  placeholder?: string;
+  required: boolean;
+  options?: { value: string; label: string }[];
+  conditional?: {
+    field: string;
+    value: string;
+  };
 }
 
 const formFields: FormField[] = [
-  // {
-  //   label: "お問い合わせ内容",
-  //   name: "inquiryType",
-  //   type: "select",
-  //   options: [
-  //     { value: "", label: "以下から選択してください" },
-  //     { value: "inquiry1", label: "お問い合わせ内容1" },
-  //     { value: "inquiry2", label: "お問い合わせ内容2" },
-  //     { value: "inquiry3", label: "お問い合わせ内容3" },
-  //   ],
-  //   required: true,
-  // },
   {
-    label: "会社名",
-    name: "company",
+    label: "希望案件内容",
+    name: "desiredProject",
     type: "text",
-    placeholder: "株式会社〇〇〇〇〇〇",
-    required: false,
-  },
-  {
-    label: "氏名",
-    name: "lastName",
-    type: "text",
-    placeholder: "田中",
     required: true,
   },
   {
-    label: "",
-    name: "firstName",
+    label: "お名前",
+    name: "name",
     type: "text",
-    placeholder: "太郎",
-    required: false,
+    required: true,
   },
   {
-    label: "所属部署名",
-    name: "department",
-    type: "text",
-    placeholder: "営業部",
-    required: false,
-  },
-  // {
-  //   label: "役職",
-  //   name: "position",
-  //   type: "text",
-  //   placeholder: "役職名をご入力ください",
-  //   required: false,
-  // },
-  {
-    label: "メールアドレス",
-    name: "email",
-    type: "email",
-    placeholder: "example@abc.co.jp",
+    label: "ご年齢",
+    name: "age",
+    type: "select",
+    options: Array.from({ length: 48 }, (_, i) => ({
+      value: String(18 + i),
+      label: String(18 + i),
+    })),
     required: true,
   },
   {
     label: "お電話番号",
     name: "phone",
     type: "tel",
-    placeholder: "00-0000-0000",
+    placeholder: "半角数字・ハイフン無しでご入力ください",
     required: true,
   },
-  // {
-  //   label: "ご検討中のサービス",
-  //   name: "serviceType",
-  //   type: "select",
-  //   options: [
-  //     { value: "", label: "以下から選択してください" },
-  //     { value: "service1", label: "ご検討中のサービス1" },
-  //     { value: "service2", label: "ご検討中のサービス2" },
-  //     { value: "service3", label: "ご検討中のサービス3" },
-  //   ],
-  //   required: true,
-  // },
   {
-    label: "お問い合わせ内容",
+    label: "メールアドレス",
+    name: "email",
+    type: "email",
+    required: true,
+  },
+  {
+    label: "ご住所 (市郡区まで)",
+    name: "address",
+    type: "text",
+    required: true,
+  },
+  {
+    label: "LINE ID",
+    name: "lineId",
+    type: "text",
+    required: false,
+  },
+  {
+    label: "面談第一希望日時",
+    name: "firstInterviewDate",
+    type: "date",
+    required: true,
+  },
+  {
+    label: "面談第二希望日時",
+    name: "secondInterviewDate",
+    type: "date",
+    required: false,
+  },
+  {
+    label: "面談第三希望日時",
+    name: "thirdInterviewDate",
+    type: "date",
+    required: false,
+  },
+  {
+    label: "持病や通院はありますか?",
+    name: "hasIllness",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "なし", label: "なし" },
+      { value: "あり", label: "あり" },
+    ],
+    required: true,
+  },
+  {
+    label: "(ありの方)病名：",
+    name: "illnessName",
+    type: "text",
+    required: false,
+  },
+  {
+    label: "同居されている方",
+    name: "cohabitants",
+    type: "text",
+    required: true,
+  },
+  {
+    label: "運転歴",
+    name: "drivingExperience",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "1年未満", label: "1年未満" },
+      { value: "1~2年", label: "1~2年" },
+      { value: "2~3年", label: "2~3年" },
+      { value: "3~4年", label: "3~4年" },
+      { value: "4~5年", label: "4~5年" },
+      { value: "5~6年", label: "5~6年" },
+      { value: "6~7年", label: "6~7年" },
+      { value: "7~8年", label: "7~8年" },
+      { value: "8~9年", label: "8~9年" },
+      { value: "10年以上", label: "10年以上" },
+    ],
+    required: true,
+  },
+  {
+    label: "理想の働き方を教えてください",
+    name: "idealWorkStyle",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      {
+        value: "ドライバーから起業までを目標にしている",
+        label: "ドライバーから起業までを目標にしている",
+      },
+      {
+        value: "マイペースに淡々と仕事をしたい",
+        label: "マイペースに淡々と仕事をしたい",
+      },
+      {
+        value: "とにかく頑張って稼ぎたい ",
+        label: "とにかく頑張って稼ぎたい ",
+      },
+      {
+        value: "掛け持ちで副業として仕事したい",
+        label: "掛け持ちで副業として仕事したい",
+      },
+      {
+        value: "面談、または稼働しながら見つけていきたい",
+        label: "面談、または稼働しながら見つけていきたい",
+      },
+    ],
+    required: false,
+  },
+  {
+    label: "軽貨物運送業のご経験はありますか?",
+    name: "hasFreightExperience",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "なし", label: "なし" },
+      { value: "あり", label: "あり" },
+    ],
+    required: true,
+  },
+  {
+    label: "「あり」の方へ: どのようなご経験がありますか?",
+    name: "freightExperienceDetail",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "ヤマト、佐川", label: "ヤマト、佐川" },
+      { value: "Amazon", label: "Amazon" },
+      { value: "アスクル等の企業配送", label: "アスクル等の企業配送" },
+      { value: "ルート案件", label: "ルート案件" },
+      { value: "スポット便のみ", label: "スポット便のみ" },
+      { value: "その他", label: "その他" },
+    ],
+    required: false,
+  },
+  {
+    label: "最低必要金額と目標金額を教えてください",
+    name: "salaryRange",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "10~20万", label: "10~20万" },
+      { value: "20~30万", label: "20~30万" },
+      { value: "30~40万", label: "30~40万" },
+      { value: "40万以上", label: "40万以上" },
+    ],
+    required: false,
+  },
+  {
+    label: "稼働開始可能日",
+    name: "startDate",
+    type: "date",
+    required: true,
+  },
+
+  {
+    label: "車両について",
+    name: "vehicle",
+    type: "select",
+    options: [
+      { value: "", label: "選択してください" },
+      { value: "専用車両を持ち込みで可能", label: "専用車両を持ち込みで可能" },
+      { value: "レンタルを希望", label: "レンタルを希望" },
+    ],
+    required: true,
+  },
+  {
+    label: "メッセージ",
     name: "message",
     type: "textarea",
-    placeholder: "お問い合わせ内容を入力してください",
     required: true,
   },
-]
+];
 
-const initialFormData: Record<string, string> = {}
+const initialFormData: Record<string, string> = {};
 formFields.forEach((field) => {
-  initialFormData[field.name] = ""
-})
+  initialFormData[field.name] = "";
+});
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState(initialFormData)
-  const [loading, setLoading] = useState(false)
-  const [responseMessage, setResponseMessage] = useState("")
-  const router = useRouter()
+  const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setResponseMessage("")
+    e.preventDefault();
+    setLoading(true);
+    setResponseMessage("");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (res.ok) {
-        router.push("/contact/thanks")
+        router.push("/contact/thanks");
       } else {
-        const data = await res.json()
-        setResponseMessage(data.error || "送信に失敗しました。")
+        const data = await res.json();
+        setResponseMessage(data.error || "送信に失敗しました。");
       }
     } catch (error) {
-      setResponseMessage("エラーが発生しました。")
+      setResponseMessage("エラーが発生しました。");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <article className="w-full md:max-w-[1240px] h-auto mx-auto px-5 md:px-5 pt-16 pb-20 md:pt-[120px] md:pb-[134px]">
+    <article className="w-full md:max-w-[1000px] h-auto mx-auto px-5 md:px-5 pt-16 pb-20 md:pt-[120px] md:pb-[134px]">
       <div className="w-full">
         <section>
-          <p className="text-lg font-semibold ![line-height:160%] tracking-[0.03em] whitespace-pre-line">
+          <p className="text-lg ![line-height:250%] tracking-[0.03em] whitespace-pre-line">
             必須項目を全てご入力の上「送信ボタン」を押して、フォームを送信してください。
             <br />
             ※フォームマーケティング・セールスはお断りしております。
           </p>
         </section>
 
-        <section className="text-sm md:text-lg mt-10 md:mt-20 mx-auto">
+        <section className="text-sm md:text-lg mt-10 md:mt-20 mx-auto pt-6 border-t border-borderLight">
           {responseMessage && <p className="text-red-500">{responseMessage}</p>}
           <form onSubmit={handleSubmit}>
-            {formFields.map((field) => (
-              <div
-                key={field.name}
-                className={`mb-6 md:mb-10 ${
-                  field.name === "lastName" || field.name === "firstName"
-                    ? "md:w-1/2 md:inline-block"
-                    : "w-full"
-                } ${
-                  field.name === "firstName"
-                    ? "md:pl-3"
-                    : field.name === "lastName"
-                    ? "md:pr-3"
-                    : ""
-                }`}
-              >
-                <label className="text-sm md:text-base block font-extrabold mb-1 md:mb-2 ![line-height:200%]">
-                  {field.label}{" "}
-                  {field.required && (
-                    <span className="text-red-500">(必須)</span>
-                  )}
-                </label>
+            {formFields.map((field) => {
+              // 条件付き表示のチェック
+              if (
+                field.conditional &&
+                formData[field.conditional.field] !== field.conditional.value
+              ) {
+                return null;
+              }
 
-                {field.type === "select" && field.options && (
-                  <select
-                    name={field.name}
-                    value={formData[field.name] || ""}
-                    onChange={handleChange}
-                    className="w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 9L15 1' stroke='%23A38758' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
-                    }}
-                  >
-                    {field.options.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                )}
-
-                {field.type !== "select" && (
-                  <>
-                    {field.type === "textarea" ? (
-                      <textarea
-                        name={field.name}
-                        value={formData[field.name] || ""}
-                        onChange={handleChange}
-                        placeholder={field.placeholder}
-                        required={field.required}
-                        rows={1}
-                        className="w-full px-6 py-4 bg-bgLight placeholder:text-[#EFEFEF] placeholder:text-base md:placeholder:text-lg"
-                      />
-                    ) : (
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        value={formData[field.name] || ""}
-                        onChange={handleChange}
-                        placeholder={field.placeholder}
-                        required={field.required}
-                        className="w-full px-6 py-4 bg-bgLight placeholder:text-[#EFEFEF] placeholder:text-base md:placeholder:text-lg ![line-height:170%]"
-                      />
+              return (
+                <div
+                  key={field.name}
+                  className={`mb-6 md:mb-6 w-full ${
+                    field.name === "hasIllness" || field.name === "message"
+                      ? ""
+                      : "pb-6 border-b border-borderLight"
+                  }`}
+                >
+                  <label className="text-sm md:text-lg block mb-1 md:mb-2 ![line-height:200%]">
+                    {field.label}{" "}
+                    {field.required && (
+                      <span className="text-[#D93D69]">(必須)</span>
                     )}
-                  </>
-                )}
-              </div>
-            ))}
+                  </label>
+
+                  {field.type === "select" && field.options && (
+                    <select
+                      name={field.name}
+                      value={formData[field.name] || ""}
+                      onChange={handleChange}
+                      className="w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg ![line-height:250%]"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 9L15 1' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+                      }}
+                    >
+                      {field.options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+
+                  {field.type !== "select" && (
+                    <>
+                      {field.type === "textarea" ? (
+                        <textarea
+                          name={field.name}
+                          value={formData[field.name] || ""}
+                          onChange={handleChange}
+                          placeholder={field.placeholder}
+                          required={field.required}
+                          rows={8}
+                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
+                        />
+                      ) : (
+                        <input
+                          type={field.type}
+                          name={field.name}
+                          value={formData[field.name] || ""}
+                          onChange={handleChange}
+                          placeholder={field.placeholder}
+                          required={field.required}
+                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
+                        />
+                      )}
+                    </>
+                  )}
+                </div>
+              );
+            })}
             <div className="flex justify-center mt-10 md:mt-20">
               <SubmitButton loading={loading} />
             </div>
-            <p className="text-center ![line-height:160%] text-xs md:text-sm mt-6 md:mt-16 tracking-[0.05em] whitespace-pre-line">
+            <p className="text-center ![line-height:250%] text-xs md:text-sm mt-6 md:mt-16 tracking-[0.05em] whitespace-pre-line">
               上記ボタンを押すことで、利用規約および、当社のサービス等に関する情報を提供する目的で、
               <br />
-              〇〇〇〇〇〇〇が送信された個人情報を保管・処理することに同意したものとみなされます。
+              株式会社アールビーが送信された個人情報を保管・処理することに同意したものとみなされます。
               <br />
               お客様はこれらの情報提供をいつでも停止できます。
               <br />
-              個人情報の開示や削除依頼等のお問い合わせ先、およびお客様の個人情報を尊重して保護するための弊社取り組みについては、プライバシーポリシーをご覧ください。
+              個人情報の開示や削除依頼等のお問い合わせ先、およびお客様の個人情報を尊重して保護するための弊社取り組みについては、
+              <br className="hidden md:block" />
+              プライバシーポリシーをご覧ください。
             </p>
           </form>
         </section>
       </div>
     </article>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

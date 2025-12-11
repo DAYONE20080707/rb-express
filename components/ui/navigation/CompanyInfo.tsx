@@ -6,9 +6,9 @@ export const CompanyInfo = [
       <Image
         src={
           type === "primary"
-            ? "/common/logo_header.png" // 1つ目のロゴパス（白色ロゴ）
+            ? "/common/logo.png" // 1つ目のロゴパス（ヘッダーロゴ）
             : type === "secondary"
-            ? "/common/logo_square.png" // 2つ目のロゴパス（黒色ロゴ）
+            ? "/common/logo_square.png" // 2つ目のロゴパス（フッターロゴ）
             : "/common/logo.png" // 3つ目のロゴパス（テキストなし）
         }
         alt="logo"
@@ -17,9 +17,9 @@ export const CompanyInfo = [
         className="w-full h-full object-contain"
       />
     ),
-    companyNameText: "企業名企業名企業名企業名企業名",
-    companyPostalCode: "000-000",
-    companyAddress: "○○県○○市○○町00-00○○○○○ビル00F",
+    companyNameText: "株式会社アールビー",
+    companyPostalCode: "400-0027",
+    companyAddress: "山梨県甲府市富士見1−2−13",
     companyTel: "000-000-0000",
     companyTelHref: "tel:0000000000",
     companyEmail: "info@company.co.jp",
