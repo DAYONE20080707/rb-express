@@ -9,8 +9,8 @@ interface ProfileCard_01Props {
 
 const ProfileCard_01 = ({ label, value }: ProfileCard_01Props) => {
   return (
-    <dl className="pb-5 border-b border-accentLight2">
-      <dt className="text-lg flex items-baseline text-accentLight">
+    <dl className="text-lg pb-5 border-b border-accentLight2">
+      <dt className="flex items-baseline text-accentLight">
         {label}
       </dt>
       <dd className="mt-2">

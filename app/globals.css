@@ -107,12 +107,26 @@ body,
     color: #265695;
   }
 
+  @media (max-width: 768px) {
+    .news-content h2,
+    .recruit-content h2 {
+      font-size: 20px;
+    }
+  }
+
   .news-content h3,
   .recruit-content h3 {
-    font-size: 1.5rem;
+    font-size: 22px;
     margin-bottom: 2rem;
     margin-top: 2rem;
     color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .news-content h3,
+    .recruit-content h3 {
+      font-size: 18px;
+    }
   }
 
   .news-content p,

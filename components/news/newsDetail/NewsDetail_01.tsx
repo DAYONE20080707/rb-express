@@ -84,7 +84,7 @@ const BlogDetail_01 = ({ params }: BlogDetailProps) => {
           </p>
         ) : (
           <article className="news-content">
-            <h1 className="text-3xl md:text-[32px] leading-[180%] font-semibold mb-6">
+            <h1 className="text-2xl md:text-[32px] leading-[180%] font-semibold mb-6">
               {post.title}
             </h1>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10 gap-2">

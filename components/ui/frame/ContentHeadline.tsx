@@ -44,7 +44,7 @@ const ContentHeadline: React.FC<ContentHeadlineProps> = ({
       </p>
       <h1
         className={classNames(
-          "text-3xl md:text-[40px] leading-[150%] mt-2 md:mt-5 tracking-[0.05em] font-semibold whitespace-pre-line",
+          "text-2xl md:text-[40px] leading-[150%] mt-2 md:mt-5 tracking-[0.05em] font-semibold whitespace-pre-line",
           variant === "light" ? "text-accentLight2" : "text-accentColor",
           titleClassName
         )}

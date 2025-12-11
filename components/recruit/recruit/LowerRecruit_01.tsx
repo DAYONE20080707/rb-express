@@ -1,4 +1,4 @@
-// components/news/news/LowerNews_01.tsx
+// components/recruit/recruit/LowerNews_01.tsx
 
 "use client";
 
@@ -99,7 +99,7 @@ const Recruit_01 = ({ limit = 3 }: RecruitProps) => {
           軽貨物ドライバー募集
         </h2>
 
-        <div className="mt-16 bg-white p-4 md:p-16">
+        <div className="mt-10 md:mt-16 bg-white p-4 md:p-16">
           {loading ? (
             <p className="text-baseColor">読み込み中...</p>
           ) : displayContents.length === 0 ? (
@@ -109,10 +109,10 @@ const Recruit_01 = ({ limit = 3 }: RecruitProps) => {
               {displayContents.map((post) => (
                 <Link
                   key={post.id}
-                  href={`/news/${post.id}`}
+                  href={`/recruit/${post.id}`}
                   className="flex flex-col md:flex-row gap-4 md:gap-10 hover:opacity-90 transition-opacity pb-6 border-b border-accentColor last:border-b-0"
                 >
-                  <div className="flex-shrink-0 w-[180px] md:w-[300px] h-[130px] md:h-[200px] overflow-hidden">
+                  <div className="flex-shrink-0 w-[180px] h-[130px] overflow-hidden">
                     {post.image && (
                       <Image
                         src={post.image.url}
@@ -152,7 +152,7 @@ const Recruit_01 = ({ limit = 3 }: RecruitProps) => {
           )}
         </div>
         {!loading && displayContents.length > 0 && (
-          <div className="mt-16 text-baseColor leading-[250%]">
+          <div className="mt-10 md:mt-16 text-baseColor leading-[250%]">
             <p>
               その他掲載していない案件もございますので、Contactからお問い合わせください。
             </p>

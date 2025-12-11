@@ -179,10 +179,6 @@ const formFields: FormField[] = [
       { value: "その他", label: "その他" },
     ],
     required: false,
-    conditional: {
-      field: "hasFreightExperience",
-      value: "あり",
-    },
   },
   {
     label: "最低必要金額と目標金額を教えてください",
@@ -268,7 +264,7 @@ const ContactForm = () => {
   };
 
   return (
-    <article className="w-full md:max-w-[1240px] h-auto mx-auto px-5 md:px-5 pt-16 pb-20 md:pt-[120px] md:pb-[134px]">
+    <article className="w-full md:max-w-[1000px] h-auto mx-auto px-5 md:px-5 pt-16 pb-20 md:pt-[120px] md:pb-[134px]">
       <div className="w-full">
         <section>
           <p className="text-lg ![line-height:250%] tracking-[0.03em] whitespace-pre-line">
@@ -278,7 +274,7 @@ const ContactForm = () => {
           </p>
         </section>
 
-        <section className="text-sm md:text-lg mt-10 md:mt-20 mx-auto">
+        <section className="text-sm md:text-lg mt-10 md:mt-20 mx-auto pt-6 border-t border-borderLight">
           {responseMessage && <p className="text-red-500">{responseMessage}</p>}
           <form onSubmit={handleSubmit}>
             {formFields.map((field) => {
@@ -311,7 +307,7 @@ const ContactForm = () => {
                       name={field.name}
                       value={formData[field.name] || ""}
                       onChange={handleChange}
-                      className="w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg"
+                      className="w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg ![line-height:250%]"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 9L15 1' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
                       }}
@@ -334,7 +330,7 @@ const ContactForm = () => {
                           placeholder={field.placeholder}
                           required={field.required}
                           rows={8}
-                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg"
+                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
                         />
                       ) : (
                         <input
@@ -344,7 +340,7 @@ const ContactForm = () => {
                           onChange={handleChange}
                           placeholder={field.placeholder}
                           required={field.required}
-                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:170%]"
+                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
                         />
                       )}
                     </>
@@ -363,7 +359,7 @@ const ContactForm = () => {
               お客様はこれらの情報提供をいつでも停止できます。
               <br />
               個人情報の開示や削除依頼等のお問い合わせ先、およびお客様の個人情報を尊重して保護するための弊社取り組みについては、
-              <br />
+              <br className="hidden md:block" />
               プライバシーポリシーをご覧ください。
             </p>
           </form>

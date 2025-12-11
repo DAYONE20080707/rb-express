@@ -97,7 +97,7 @@ const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
     <div className=" bg-bgLight">
       <div className="max-w-[1200px] mx-auto py-16 md:pt-20 md:pb-[120px] px-4">
         <article className="news-content">
-          <h1 className="text-3xl md:text-[32px] leading-[180%] font-semibold mb-6">{post.title}</h1>
+          <h1 className="text-2xl md:text-[32px] leading-[180%] font-semibold mb-6">{post.title}</h1>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10 gap-2">
             <div className="flex flex-wrap gap-2">
               {Array.isArray(post.category) && post.category.length > 0 ? (

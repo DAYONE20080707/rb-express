@@ -52,7 +52,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <div className="font-bold text-[16px] text-left text-accentLight font-en">
           {subTitle}
         </div>
-        <div className="font-medium text-[34px] text-left text-accentColor whitespace-pre-line pb-8 border-b border-borderLight">
+        <div className="font-medium text-xl md:text-[34px] leading-[150%] text-left text-accentColor whitespace-pre-line pb-8 border-b border-borderLight">
           {title}
         </div>
         <div className="mt-8 text-base md:text-lg text-baseColor !leading-[250%]">

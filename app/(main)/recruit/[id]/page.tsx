@@ -1,14 +1,14 @@
 import Lowerkv_02 from "@/components/lowerkv/Lowerkv_02";
-import NewsDetail_01 from "@/components/news/newsDetail/NewsDetail_01";
-import { newsFetch } from "@/lib/api/newsFetch";
+import RecruitDetail_01 from "@/components/recruit/recruitDetail/RecruitDetail_01";
+import { blogsFetch } from "@/lib/api/blogsFetch";
 
-interface NewsDetailPageProps {
+interface RecruitDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-const NewsDetailPage = async ({ params }: NewsDetailPageProps) => {
+const RecruitDetailPage = async ({ params }: RecruitDetailPageProps) => {
   const { id } = await params;
-  const post = await newsFetch.get(id);
+  const post = await blogsFetch.get(id);
 
   return (
     <>
@@ -20,9 +20,9 @@ const NewsDetailPage = async ({ params }: NewsDetailPageProps) => {
         parentDirectoryLink="/recruit"
         breadcrumbTitle={post?.title}
       />
-      <NewsDetail_01 params={{ id }} />
+      <RecruitDetail_01 params={{ id }} />
     </>
   );
 };
 
-export default NewsDetailPage;
+export default RecruitDetailPage;

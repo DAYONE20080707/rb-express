@@ -56,7 +56,7 @@ const AboutSection_01 = ({
 
         </div>
       </div>
-      <section className="md:w-full h-[250px] md:h-[560px] mx-auto mt-10 md:mt-[160px]  flex justify-center relative ">
+      <section className="md:w-full h-[150px] md:h-[560px] mx-auto mt-10 md:mt-[160px]  flex justify-center relative ">
         <Image
           src="/top/message/message_img.jpg"
           alt="message"
