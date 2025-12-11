@@ -111,7 +111,7 @@ const formFields: FormField[] = [
     name: "drivingExperience",
     type: "select",
     options: [
-      { value: "", label: "選択してください" },
+      { value: "未選択", label: "選択してください" },
       { value: "1年未満", label: "1年未満" },
       { value: "1~2年", label: "1~2年" },
       { value: "2~3年", label: "2~3年" },
@@ -130,7 +130,7 @@ const formFields: FormField[] = [
     name: "idealWorkStyle",
     type: "select",
     options: [
-      { value: "", label: "選択してください" },
+      { value: "未選択", label: "選択してください" },
       {
         value: "ドライバーから起業までを目標にしている",
         label: "ドライバーから起業までを目標にしている",
@@ -159,7 +159,7 @@ const formFields: FormField[] = [
     name: "hasFreightExperience",
     type: "select",
     options: [
-      { value: "", label: "選択してください" },
+      { value: "未選択", label: "選択してください" },
       { value: "なし", label: "なし" },
       { value: "あり", label: "あり" },
     ],
@@ -185,7 +185,7 @@ const formFields: FormField[] = [
     name: "salaryRange",
     type: "select",
     options: [
-      { value: "", label: "選択してください" },
+      { value: "未選択", label: "選択してください" },
       { value: "10~20万", label: "10~20万" },
       { value: "20~30万", label: "20~30万" },
       { value: "30~40万", label: "30~40万" },
@@ -205,7 +205,7 @@ const formFields: FormField[] = [
     name: "vehicle",
     type: "select",
     options: [
-      { value: "", label: "選択してください" },
+      { value: "未選択", label: "選択してください" },
       { value: "専用車両を持ち込みで可能", label: "専用車両を持ち込みで可能" },
       { value: "レンタルを希望", label: "レンタルを希望" },
     ],
@@ -228,6 +228,7 @@ const ContactForm = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
 
   const handleChange = (
@@ -235,13 +236,58 @@ const ContactForm = () => {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    // エラーメッセージをクリア
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    formFields.forEach((field) => {
+      // 条件付きフィールドのチェック
+      if (
+        field.conditional &&
+        formData[field.conditional.field] !== field.conditional.value
+      ) {
+        return;
+      }
+
+      if (field.required) {
+        const value = formData[field.name];
+        if (!value || value.trim() === "") {
+          newErrors[field.name] = `${field.label}を入力してください。`;
+        }
+      }
+    });
+
+    setErrors(newErrors);
+    return newErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setResponseMessage("");
+
+    // クライアント側バリデーション
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setResponseMessage("入力に誤りがあります。エラーメッセージをご確認ください。");
+      // 最初のエラーフィールドにスクロール
+      setTimeout(() => {
+        const firstErrorField = Object.keys(validationErrors)[0];
+        if (firstErrorField) {
+          const element = document.getElementsByName(firstErrorField)[0];
+          element?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 100);
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const res = await fetch("/api/contact", {
@@ -303,45 +349,81 @@ const ContactForm = () => {
                   </label>
 
                   {field.type === "select" && field.options && (
-                    <select
-                      name={field.name}
-                      value={formData[field.name] || ""}
-                      onChange={handleChange}
-                      className="w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg ![line-height:250%]"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 9L15 1' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
-                      }}
-                    >
-                      {field.options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
+                    <>
+                      <select
+                        name={field.name}
+                        value={formData[field.name] || ""}
+                        onChange={handleChange}
+                        required={field.required}
+                        className={`w-full px-6 py-4 bg-bgLight [&>*]:bg-bgLight appearance-none bg-[length:16px_10px] md:bg-[length:22px_10px] bg-[right_1.5rem_center] bg-no-repeat text-base md:text-lg ![line-height:250%] ${
+                          errors[field.name] ? "border-2 border-red-500" : ""
+                        }`}
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 9L15 1' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+                        }}
+                      >
+                        {field.options.map((option) => (
+                          <option
+                            key={option.value}
+                            value={option.value}
+                            disabled={option.value === "" && field.required}
+                          >
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      {errors[field.name] && (
+                        <p className="text-red-500 text-sm mt-2">
+                          {errors[field.name]}
+                        </p>
+                      )}
+                    </>
                   )}
 
                   {field.type !== "select" && (
                     <>
                       {field.type === "textarea" ? (
-                        <textarea
-                          name={field.name}
-                          value={formData[field.name] || ""}
-                          onChange={handleChange}
-                          placeholder={field.placeholder}
-                          required={field.required}
-                          rows={8}
-                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
-                        />
+                        <>
+                          <textarea
+                            name={field.name}
+                            value={formData[field.name] || ""}
+                            onChange={handleChange}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            rows={8}
+                            className={`w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%] ${
+                              errors[field.name]
+                                ? "border-2 border-red-500"
+                                : ""
+                            }`}
+                          />
+                          {errors[field.name] && (
+                            <p className="text-red-500 text-sm mt-2">
+                              {errors[field.name]}
+                            </p>
+                          )}
+                        </>
                       ) : (
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formData[field.name] || ""}
-                          onChange={handleChange}
-                          placeholder={field.placeholder}
-                          required={field.required}
-                          className="w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%]"
-                        />
+                        <>
+                          <input
+                            type={field.type}
+                            name={field.name}
+                            value={formData[field.name] || ""}
+                            onChange={handleChange}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            className={`w-full px-6 py-4 bg-bgLight placeholder:text-[#828282] placeholder:text-base md:placeholder:text-lg ![line-height:250%] ${
+                              errors[field.name]
+                                ? "border-2 border-red-500"
+                                : ""
+                            }`}
+                          />
+                          {errors[field.name] && (
+                            <p className="text-red-500 text-sm mt-2">
+                              {errors[field.name]}
+                            </p>
+                          )}
+                        </>
                       )}
                     </>
                   )}
