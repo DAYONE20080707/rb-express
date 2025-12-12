@@ -9,7 +9,7 @@ const ContactPage = () => {
       <Lowerkv_02
         subTitle="Contact"
         mainTitle="お問い合わせ"
-        backgroundImage="./common/lowerkv_contact.jpg"
+        backgroundImage="/common/lowerkv_contact.jpg"
       />
       <Contact_01 />
       <Cta_03 />
