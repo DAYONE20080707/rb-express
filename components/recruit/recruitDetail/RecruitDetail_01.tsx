@@ -1,77 +1,78 @@
 // components/news/newsDetail/RecruitDetail_01.tsx
 
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { NavigationArrow } from "@/components/ui/icons/NavigationArrow";
-import { Cms } from "@/types";
-import { blogsFetch } from "@/lib/api/blogsFetch";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { NavigationArrow } from "@/components/ui/icons/NavigationArrow"
+import { Cms } from "@/types"
+import { blogsFetch } from "@/lib/api/blogsFetch"
+import styles from "@/styles/microcms.module.css"
 
 interface BlogDetailProps {
   params: {
-    id: string;
-  };
+    id: string
+  }
 }
 
 const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
-  const { id } = params;
-  const [post, setPost] = useState<Cms | null>(null);
-  const [prevPost, setPrevPost] = useState<Cms | null>(null);
-  const [nextPost, setNextPost] = useState<Cms | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { id } = params
+  const [post, setPost] = useState<Cms | null>(null)
+  const [prevPost, setPrevPost] = useState<Cms | null>(null)
+  const [nextPost, setNextPost] = useState<Cms | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    let mounted = true;
+    let mounted = true
 
     const fetchData = async () => {
       try {
-        setLoading(true);
-        setError(null);
+        setLoading(true)
+        setError(null)
 
         // 記事取得
-        const currentPost = await blogsFetch.get(id);
-        if (!mounted) return;
+        const currentPost = await blogsFetch.get(id)
+        if (!mounted) return
 
         if (!currentPost) {
-          setError("記事が見つかりませんでした");
-          return;
+          setError("記事が見つかりませんでした")
+          return
         }
 
-        setPost(currentPost);
+        setPost(currentPost)
 
         // 全記事取得（publishedAt順）
-        const allPosts = await blogsFetch.list(100);
-        if (!mounted) return;
+        const allPosts = await blogsFetch.list(100)
+        if (!mounted) return
 
         const sorted = allPosts.sort(
           (a, b) =>
             new Date(b.date ?? "").getTime() - new Date(a.date ?? "").getTime()
-        );
+        )
 
-        const index = sorted.findIndex((p) => p.id === id);
-        setPrevPost(index > 0 ? sorted[index - 1] : null);
-        setNextPost(index < sorted.length - 1 ? sorted[index + 1] : null);
+        const index = sorted.findIndex((p) => p.id === id)
+        setPrevPost(index > 0 ? sorted[index - 1] : null)
+        setNextPost(index < sorted.length - 1 ? sorted[index + 1] : null)
       } catch (err) {
-        console.error("Failed to fetch news post:", err);
+        console.error("Failed to fetch news post:", err)
         if (mounted) {
-          setError("記事の取得に失敗しました");
+          setError("記事の取得に失敗しました")
         }
       } finally {
         if (mounted) {
-          setLoading(false);
+          setLoading(false)
         }
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
 
     return () => {
-      mounted = false;
-    };
-  }, [id]);
+      mounted = false
+    }
+  }, [id])
 
   if (loading) {
     return (
@@ -80,7 +81,7 @@ const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
           <p>読み込み中...</p>
         </div>
       </div>
-    );
+    )
   }
 
   if (error || !post) {
@@ -90,14 +91,16 @@ const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
           <p>{error || "記事が見つかりませんでした"}</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className=" bg-bgLight">
       <div className="max-w-[1200px] mx-auto py-16 md:pt-20 md:pb-[120px] px-4">
         <article className="news-content">
-          <h1 className="text-2xl md:text-[32px] leading-[180%] font-semibold mb-6">{post.title}</h1>
+          <h1 className="text-2xl md:text-[32px] leading-[180%] font-semibold mb-6">
+            {post.title}
+          </h1>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10 gap-2">
             <div className="flex flex-wrap gap-2">
               {Array.isArray(post.category) && post.category.length > 0 ? (
@@ -140,7 +143,7 @@ const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
           )}
 
           <div
-            className="prose max-w-none prose-headings:font-bold prose-h2:text-[24px] prose-h2:mb-6 prose-h2:mt-12 prose-h2:font-medium prose-h2:leading-[160%] prose-h2:text-accentColor prose-h2:font-noto prose-h3:text-xl prose-h3:mb-4 prose-h3:mt-8 prose-p:leading-relaxed prose-p:text-base prose-li:text-base prose-li:leading-relaxed prose-ul:mt-4 prose-ul:mb-6 prose-ul:pl-6 prose-ol:mt-4 prose-ol:mb-6 prose-ol:list-decimal prose-ol:pl-6 prose-ul:list-disc prose-ul:marker:text-accentColor prose-ul:marker:text-[8px]"
+            className={styles.content}
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
@@ -193,7 +196,7 @@ const RecruitDetail_01 = ({ params }: BlogDetailProps) => {
         </nav> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RecruitDetail_01;
+export default RecruitDetail_01
