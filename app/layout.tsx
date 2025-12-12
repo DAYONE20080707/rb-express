@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Noto_Sans_JP, Outfit } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleTagManager } from "@/components/ui/module/GoogleTagManager"
 
 // Noto Sans JP フォントの設定
 const notoSansJP = Noto_Sans_JP({
@@ -64,7 +64,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
   return (
     <html lang="ja">
       <body className={`font-notoSansJP text-baseColor ${outfit.variable}`}>
-        <GoogleTagManager gtmId="GTM-5VZQPT43" />
+        <GoogleTagManager gtmId="GTM-K8Z6R648" />
         <ToastProvider />
         {children}
       </body>
